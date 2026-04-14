@@ -1,0 +1,36 @@
+name: Manual Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: Target self-hosted runner
+        required: true
+        type: choice
+        options:
+          - rainer
+          - max
+          - duc
+          - oliver
+
+jobs:
+  deploy:
+    runs-on:
+      - self-hosted
+      - ${{ inputs.runner }}
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Pull & restart
+        env:
+          HOST_PORT: "8088"
+        run: |
+          docker compose pull
+          docker compose up -d
+          docker image prune -f
