@@ -70,6 +70,9 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Pull & restart
+        env:
+          COMPOSE_PROJECT_NAME: printx-auto
+          HOST_PORT: "8080"
         run: |
           docker compose pull
           docker compose up -d

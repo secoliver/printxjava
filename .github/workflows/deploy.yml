@@ -29,6 +29,7 @@ jobs:
 
       - name: Pull & restart
         env:
+          COMPOSE_PROJECT_NAME: printx-${{ inputs.runner }}
           HOST_PORT: "8088"
         run: |
           docker compose pull
