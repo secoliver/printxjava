@@ -62,7 +62,7 @@ jobs:
 
   deploy:
     needs: build-and-push
-    runs-on: [self-hosted, linux, dev-runner]
+    runs-on: [self-hosted, linux, ulrich-dev]
     steps:
       - uses: actions/checkout@v4
 
