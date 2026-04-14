@@ -13,7 +13,7 @@ public class Greeter {
     static System.Logger LOG = System.getLogger(Greeter.class.getName()); 
 
     @Inject
-    @ConfigProperty(defaultValue = "hello, Quarkus on BCE", name="message")
+    @ConfigProperty(defaultValue = "hello, java", name="message")
     String message;
     
     public String greetings() {
