@@ -1,0 +1,9 @@
+services:
+  service:
+    image: ghcr.io/secoliver/printxjava:latest
+    container_name: quarkus-microprofile-service
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_PROFILE: prod
